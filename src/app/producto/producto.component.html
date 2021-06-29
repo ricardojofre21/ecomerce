@@ -1,0 +1,295 @@
+<div class="container">
+    <div *ngIf="productosCarrito.length !=0 ">
+        <a data-bs-target="#exampleModal" data-bs-toggle="modal" class="btn-flotante">
+            <i class="bi bi-cart-plus"></i> Carrito <span
+                *ngIf="productosCarrito.length>0">({{productosCarrito.length}})</span></a>
+    </div>
+
+    <br><br>
+    <div class="row content">
+        <div class="col-sm-1"></div>
+        <div class="col-sm-10">
+            <div class="card">
+                <div class="card-header"   style="background:linear-gradient(270deg, #2abcd6, #474ad4);">
+                    <div class="row content">
+                        <div class="col-sm-6 " >
+                          <h5>  Mis Productos</h5>
+                        </div>
+                        <div class="col-sm-6">
+                            <!-- <form class="d-flex">
+                                <input class="form-control me-2" [formControl]="clave" ng-model="searchText" type="text" placeholder="Palabra clave: amd, gtx, rtx, nvidia" aria-label="Search">
+                                <button (click) = "busquedaClave()" class="btn btn-outline-success" type="submit">Buscar</button>
+                                <button (click) = "quitarBusqueda()" class="btn btn-outline-success" type="submit">Quitar</button>
+                                <svg class="bi" width="32" height="32" fill="currentColor">
+                                  <use xlink:href="bootstrap-icons.svg#heart-fill"/>
+                                </svg>
+                              </form>  -->
+                            <div class="row">
+                                <form>
+                                    <div class="input-group">
+                                        <input class="form-control " [formControl]="clave" ng-model="searchText"
+                                            type="text" placeholder="Palabra clave: amd, gtx, rtx, nvidia"
+                                            aria-label="Search">
+                                        <span class="input-group-text"><i class="bi bi-search" (click)="busquedaClave()"
+                                                type="submit"></i> </span>
+                                        <span class="input-group-text"><i class="bi bi-x-circle"
+                                                (click)="quitarBusqueda()" type="submit"></i></span>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                        <!-- <div class="col-sm-3">
+                            <button data-bs-target="#exampleModal" data-bs-toggle="modal"
+                                class="btn float-end btn-warning"><i class="bi bi-cart-plus"></i> Carrito <span
+                                    *ngIf="productosCarrito.length>0">({{productosCarrito.length}})</span></button>
+                        </div> -->
+                    </div>
+                </div>
+                <div class="card-body">
+                    <div class="row content">
+                        <!-- <table class="table">
+<tr *ngFor="let item of datos">
+    <td>{{item.nombre}}</td>
+    <td>{{item.descripcion}}</td>
+    <td>{{item.precio}}</td>
+</tr>
+                        </table> -->
+                        <div class="col">
+                            <div *ngIf="busqueda.length == 0; else buscar">
+
+                                <div class="row">
+                                    <div class="col-sm-4"
+                                        *ngFor="let item of productosActual | paginate: {itemsPerPage: 3, currentPage:currentPg} "
+                                        style="margin-bottom: 20px;">
+                                        <div class="card h-100">
+                                            <img src="{{item.img}}" class="card-img-top" alt="...">
+                                            <div class="card-body">
+                                                <h5 class="card-title">{{item.nombre}}</h5>
+                                                <p class="card-text">{{item.descripcion}}</p>
+                                            </div>
+                                            <div class="card-footer">
+                                                <div class="row content">
+                                                    <div class="col-sm-5" style="width: auto;">
+                                                        <a class="btn btn-primary"
+                                                            (click)="agregarProducto(productosActual.indexOf(item))">Comprar</a>
+                                                    </div>
+                                                    <div class="col-sm-7">
+                                                        <h5>{{item.precio | currency:'CLP'}}</h5>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                            </div>
+                            <ng-template #buscar>
+
+                                <div class="row">
+                                    <div class="col-sm-4"
+                                        *ngFor="let items of busqueda | paginate: {itemsPerPage: 3, currentPage:currentPg} "
+                                        style="margin-bottom: 20px;">
+                                        <div class="card h-100">
+                                            <img src="{{items.img}}" class="card-img-top" alt="...">
+                                            <div class="card-body">
+                                                <h5 class="card-title">{{items.nombre}}</h5>
+                                                <p class="card-text">{{items.descripcion}}</p>
+                                            </div>
+                                            <div class="card-footer">
+                                                <div class="row content">
+                                                    <div class="col-sm-5">
+                                                        <a class="btn btn-primary"
+                                                            (click)="agregarProducto(productosActual.indexOf(items))">Comprar</a>
+                                                    </div>
+                                                    <div class="col-sm-7">
+                                                        <h5>{{items.precio | currency:'CLP'}}</h5>
+                                                    </div>
+                                                </div>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+
+                            </ng-template>
+
+
+                        </div>
+                        <!-- 
+                        <div class="col-sm-4">
+                            <div class="card" style="width: 18rem;">
+                                <img src="assets/img/images.jfif" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title">Pc Gamer Pro</h5>
+                                    <p class="card-text">Gráficos
+                                        RTX 3080 8GB</p>
+                                    <p>Procesador
+                                        Intel i9 9900KF</p>
+                                    <h5>$690,490</h5>
+                                    <div class="row content">
+                                        <div class="col-sm-7">
+                                            <a  class="btn btn-primary" onclick="sumarCarrito(690490);alert('Producto Agregado');">Agregar carrito</a>
+                                            </div>
+                                            <div class="col-sm-5">
+                                               <a class="btn btn-warning" onclick="mostrarTotal()" >Ver total</a>
+                                            </div>
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4">
+                            <div class="card" style="width: 18rem;">
+                                <img src="assets/img/pc.jpg" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title">Pc Gamer Ultra</h5>
+                                    <p class="card-text">Gráficos
+                                        RTX 3080 16GB</p>
+                                    <p>Procesador
+                                        Intel i9 9900KF</p>
+                                    <h5>$790,490</h5>
+                                    <div class="row content">
+                                        <div class="col-sm-7">
+                                            <a  class="btn btn-primary" onclick="sumarCarrito(790490);alert('Producto Agregado');">Agregar carrito</a>
+                                            </div>
+                                            <div class="col-sm-5">
+                                               <a class="btn btn-warning" onclick="mostrarTotal()" >Ver total</a>
+                                            </div>
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+  
+                        <div class="col-sm-4" style="margin-top: 20px;">
+                            <div class="card" style="width: 18rem;">
+                                <img src="assets/img/audifono.jfif" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title">Audifonos Gamer</h5>
+                                    <p class="card-text">G733 Blanco
+                                    </p>
+  
+                                    <h5>$190,490</h5>
+                                    <div class="row content">
+                                        <div class="col-sm-7">
+                                            <a  class="btn btn-primary" onclick="sumarCarrito(190490);alert('Producto Agregado');">Agregar carrito</a>
+                                            </div>
+                                            <div class="col-sm-5">
+                                               <a class="btn btn-warning" onclick="mostrarTotal()" >Ver total</a>
+                                            </div>
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4" style="margin-top: 20px;">
+                            <div class="card" style="width: 18rem;">
+                                <img src="assets/img/cougar.jpg" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title">Audifonos Gamer</h5>
+                                    <p class="card-text">Cougar Gamer Black
+                                    </p>
+  
+                                    <h5>$40,490</h5>
+                                    <div class="row content">
+                                        <div class="col-sm-7">
+                                            <a  class="btn btn-primary" onclick="sumarCarrito(40490);alert('Producto Agregado');">Agregar carrito</a>
+                                            </div>
+                                            <div class="col-sm-5">
+                                               <a class="btn btn-warning" onclick="mostrarTotal()" >Ver total</a>
+                                            </div>
+                                        </div>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-sm-4" style="margin-top: 20px;">
+                            <div class="card" style="width: 18rem;">
+                                <img src="assets/img/ryzen.jpg" class="card-img-top" alt="...">
+                                <div class="card-body">
+                                    <h5 class="card-title">Audifonos Gamer</h5>
+                                    <p class="card-text">Ryzen Black
+                                    </p>
+  
+                                    <h5>$90,490</h5>
+                                    <div class="row content">
+                                        <div class="col-sm-7">
+                                            <a  class="btn btn-primary" onclick="sumarCarrito(90490);alert('Producto Agregado');">Agregar carrito</a>
+                                            </div>
+                                            <div class="col-sm-5">
+                                               <a class="btn btn-warning" onclick="mostrarTotal()" >Ver total</a>
+                                            </div>
+                                        </div>
+                                </div>
+                            </div>
+                        </div> -->
+
+                    </div>
+                </div>
+                <div class="card-footer" style="text-align: right;background:linear-gradient(270deg, #cd06ff, #3e46b8);">
+                     <div class="pagination">   
+                        <pagination-controls  previousLabel="Anterior" nextLabel="Siguiente"
+                             (pageChange)="currentPg = $event"></pagination-controls>          
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-sm-1">
+        </div>
+    </div>
+    
+</div>
+<div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg modal-dialog-centered modal-dialog-scrollable">
+        <div class="modal-content">
+            <div class="modal-header border-bottom-0" style="background:linear-gradient(270deg, #2abcd6, #474ad4);">
+                <h5 class="modal-title" id="exampleModalLabel">Carrito de compra</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <table class="table table-image border">
+                    <thead>
+                        <tr>
+                            <th scope="col"></th>
+                            <th scope="col">Producto</th>
+                            <th scope="col">Precio</th>
+                            <th scope="col">Cantidad</th>
+                            <th scope="col">Total</th>
+                            <th scope="col">Acciones</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let p of productosCarrito; let j = index">
+                            <td class="w-25">
+                                <img src="{{p.img}}" class="img-fluid img-thumbnail" alt="Sheep">
+                            </td>
+                            <td>{{p.nombre}}</td>
+                            <td>$ {{p.precio}}</td>
+                            <td style="width:15%;"><input type="number" min="1" onkeyDown="return false" class="form-control" [formControl]="cantidad"
+                                    id="input1" placeholder="{{productosCantidad[j+1].cant}}"></td>
+                            <td>{{p.precio*productosCantidad[j+1].cant | currency:'CLP'}}</td>
+                            <td>
+                                <button (click)="eliminarProducto(p.codigo)" class="btn btn-danger btn-sm ">
+                                    <i class="bi bi-trash"></i>
+                                </button> &nbsp;
+                                <button (click)="actualizarProducto(p.codigo)" href="#" class="btn btn-success btn-sm">
+                                    <i class="bi bi-pencil-square"></i>
+                                </button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td></td>
+                            <td></td>
+                            <td></td>
+                            <th>Total:</th>
+                            <td>{{totalDinero | currency:'CLP'}}</td>
+                            <td></td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+            <div class="modal-footer" style="text-align: right;background:linear-gradient(270deg, #cd06ff, #3e46b8);">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cerrar</button>
+                <button data-bs-dismiss="modal" type="button" routerLink="../pago"
+                    class="btn btn-primary">Pagar</button>
+            </div>
+        </div>
+    </div>
+    
+</div>

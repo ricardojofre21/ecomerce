@@ -1,0 +1,52 @@
+ <!-- Main Content -->
+ <div class="container-fluid">
+    <div class="row main-content bg-success text-center">
+        <div class="col-md-4 text-center company__info">
+            <span class="company__logo"><h2><span class="fa fa-android"></span></h2></span>
+           <img src="../../assets/img/logo.jpg" style="border-radius: 200px;">
+        </div>
+        <div class="col-md-8 col-xs-12 col-sm-12 login_form ">
+            <div class="container-fluid">
+                <div class="row">
+                    <h2 style="font-family:'Times New Roman', Times, serif;">Iniciar sesión</h2>
+                </div>
+                <div class="row">
+                    <form control="" class="form-group" [formGroup]="login">
+                        <div class="row">
+                            <input type="text"  class="form__input" formControlName="user" placeholder="Nombre de usuario" [ngClass]="(this.login.get('user')?.errors && this.login.get('user')?.touched) ? 'errorInput' : ''">
+                            <p *ngIf="this.login.get('user')?.hasError('required') && this.login.get('user')?.touched">
+                                <small class="errorText">El user es requerido</small>
+                            </p>
+                        </div>
+                        <div class="row">
+                            <!-- <span class="fa fa-lock"></span> -->
+                            <input type="password"  class="form__input"  formControlName="pwd" placeholder="Contraseña"[ngClass]="(this.login.get('pwd')?.errors && this.login.get('pwd')?.touched) ? 'errorInput' : ''">
+                            <p *ngIf="this.login.get('pwd')?.hasError('required') && this.login.get('pwd')?.touched">
+                                <small class="errorText">La Contraseña es requerida</small>
+                            </p>
+                        </div>
+                    
+                        <div class="row content text-center">
+                         
+                          
+                                    <a type="submit"  class="btn" (click)="validar()">Iniciar </a>
+                              
+                                
+                            <!-- <div class="col-sm-6">  
+                             
+                                    <a type="submit"  class="btn" href="#">Registrarse </a></div>-->
+                             
+                        </div> 
+                    </form>
+                </div>
+                <!-- <div class="row">
+                    <p>Don't have an account? <a href="#">Register Here</a></p>
+                </div> -->
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Footer -->
+<!-- <div class="container-fluid text-center footer">
+    Coded with &hearts; by <a href="https://www.everis.com/chile/es/home-chile" target="_blank">Everis.</a>
+</div> -->

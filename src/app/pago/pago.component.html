@@ -1,0 +1,263 @@
+<br>
+<br>
+<div class="container">
+    <div class="row content">
+        <div class="col-sm-6">
+            <div class="card ">
+                <div class="card-header text-center"style="background:linear-gradient(270deg, #60b0f1, #3e46b8);">
+                    <h5> Dirección de envio</h5>
+                </div>
+                <div class="card-body">
+                    <form [formGroup]="compra">
+                        <div class="row ">
+                            <div class=" col-sm-6">
+                                <label>Región:</label>
+                                <select class="form-select" formControlName="region"
+                                    [ngClass]="(this.compra.get('region')?.errors && this.compra.get('region')?.touched) ? 'errorInput' : ''">
+                                    <option value="">Seleccione región</option>
+                                    <option *ngFor="let item of region">
+                                        {{item}}
+                                    </option>
+                                </select>
+                                <p
+                                    *ngIf="this.compra.get('region')?.hasError('required') && this.compra.get('region')?.touched">
+                                    <small class="errorText">La región es requerida</small>
+                                </p>
+                            </div>
+                            <div class=" col-sm-6">
+                                <label>Ciudad:</label>
+                                <input class="form-control" type="text" formControlName="ciudad"
+                                    [ngClass]="(this.compra.get('ciudad')?.errors && this.compra.get('ciudad')?.touched) ? 'errorInput' : ''"
+                                    onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122))">
+                                <p
+                                    *ngIf="this.compra.get('ciudad')?.hasError('required') && this.compra.get('ciudad')?.touched">
+                                    <small class="errorText">La ciudad es requerida</small>
+                                </p>
+                                <p *ngIf="this.compra.get('ciudad')?.hasError('minlength')">
+                                    <small class="errorText">Minimo de caracteres es 3</small>
+                                </p>
+                                <p *ngIf="this.compra.get('ciudad')?.hasError('maxlength')">
+                                    <small class="errorText">Máximo de caracteres es 15</small>
+                                </p>
+                                <!-- <p *ngIf="this.compra.get('ciudad')?.hasError('pattern')">
+                                    <small class="errorText">Se acepta solo letras</small>
+                                </p> -->
+                            </div>
+
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <label>Dirección:</label>
+                                <input class="form-control" type="text" formControlName="direccion"
+                                    [ngClass]="(this.compra.get('direccion')?.errors && this.compra.get('direccion')?.touched) ? 'errorInput' : ''">
+                                <p
+                                    *ngIf="this.compra.get('direccion')?.hasError('required') && this.compra.get('direccion')?.touched">
+                                    <small class="errorText">La dirección es requerida</small>
+                                </p>
+                                <p *ngIf="this.compra.get('direccion')?.hasError('minlength')">
+                                    <small class="errorText">Minimo de caracteres es 3</small>
+                                </p>
+                                <p *ngIf="this.compra.get('direccion')?.hasError('maxlength')">
+                                    <small class="errorText">Máximo de caracteres es 20</small>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <label>Calle:</label>
+                                <input class="form-control" type="text" formControlName="calle"
+                                    [ngClass]="(this.compra.get('calle')?.errors && this.compra.get('calle')?.touched) ? 'errorInput' : ''">
+
+                                <p
+                                    *ngIf="this.compra.get('calle')?.hasError('required') && this.compra.get('calle')?.touched">
+                                    <small class="errorText">La calle es requerida</small>
+                                </p>
+                                <p *ngIf="this.compra.get('calle')?.hasError('minlength')">
+                                    <small class="errorText">Minimo de caracteres es 3</small>
+                                </p>
+                                <p *ngIf="this.compra.get('calle')?.hasError('maxlength')">
+                                    <small class="errorText">Máximo de caracteres es 20</small>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <label>Código postal:</label>
+                                <input class="form-control" type="text" formControlName="codigoPostal"
+                                    [ngClass]="(this.compra.get('codigoPostal')?.errors && this.compra.get('codigoPostal')?.touched) ? 'errorInput' : ''"
+                                    onkeypress="return (event.charCode >= 48 && event.charCode <= 57)">
+                                <p
+                                    *ngIf="this.compra.get('codigoPostal')?.hasError('required') && this.compra.get('codigoPostal')?.touched">
+                                    <small class="errorText">El código postal es requerido</small>
+                                </p>
+                                <p *ngIf="this.compra.get('codigoPostal')?.hasError('minlength')">
+                                    <small class="errorText">Minimo de caracteres es 7</small>
+                                </p>
+                                <p *ngIf="this.compra.get('codigoPostal')?.hasError('maxlength')">
+                                    <small class="errorText">Máximo de caracteres es 7</small>
+                                </p>
+                            </div>
+                        </div>
+                        <br>
+                        <div class="card-header text-center"
+                            style="background:linear-gradient(270deg, #2abcd6, #474ad4);">
+                            <h5> Formulario de pago</h5>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-12">
+                                <label>Nombre Cliente:</label>
+                                <input class="form-control" type="text" formControlName="nombreCliente"
+                                    [ngClass]="(this.compra.get('nombreCliente')?.errors && this.compra.get('nombreCliente')?.touched) ? 'errorInput' : ''"
+                                    onkeypress="return ((event.charCode >= 65 && event.charCode <= 90) || (event.charCode >= 97 && event.charCode <= 122))">
+                                <p
+                                    *ngIf="this.compra.get('nombreCliente')?.hasError('required') && this.compra.get('nombreCliente')?.touched">
+                                    <small class="errorText">El nombre es requerido</small>
+                                </p>
+                                <p *ngIf="this.compra.get('nombreCliente')?.hasError('minlength')">
+                                    <small class="errorText">Minimo de caracteres es 3</small>
+                                </p>
+                                <p *ngIf="this.compra.get('nombreCliente')?.hasError('maxlength')">
+                                    <small class="errorText">Máximo de caracteres es 20</small>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <label>Tipo de tarjeta:</label>
+                                <select class="form-select" formControlName="tarjeta"
+                                    [ngClass]="(this.compra.get('tarjeta')?.errors && this.compra.get('tarjeta')?.touched) ? 'errorInput' : ''">
+                                    <option value="">Seleccione tipo tarjeta</option>
+                                    <option *ngFor="let item of tarjeta">
+                                        {{item}}
+                                    </option>
+                                </select>
+                                <p
+                                    *ngIf="this.compra.get('tarjeta')?.hasError('required') && this.compra.get('tarjeta')?.touched">
+                                    <small class="errorText">El tipo de tarjeta es requerido</small>
+                                </p>
+                            </div>
+                            <div class="col-sm-6">
+                                <label>Número de tarjeta:</label>
+                                <input class="form-control" type="text" formControlName="numeroTarjeta"
+                                    [ngClass]="(this.compra.get('numeroTarjeta')?.errors && this.compra.get('numeroTarjeta')?.touched) ? 'errorInput' : ''"
+                                    onkeypress="return (event.charCode >= 48 && event.charCode <= 57)">
+                                <p
+                                    *ngIf="this.compra.get('numeroTarjeta')?.hasError('required') && this.compra.get('numeroTarjeta')?.touched">
+                                    <small class="errorText">El número de tarjeta es requerido</small>
+                                </p>
+                                <p *ngIf="this.compra.get('numeroTarjeta')?.hasError('minlength')">
+                                    <small class="errorText">Minimo de caracteres es 16</small>
+                                </p>
+                                <p *ngIf="this.compra.get('numeroTarjeta')?.hasError('maxlength')">
+                                    <small class="errorText">Máximo de caracteres es 16</small>
+                                </p>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-sm-6">
+                                <label>Código de seguridad:</label>
+                                <input class="form-control" type="text" formControlName="codigoSeguridad"
+                                    [ngClass]="(this.compra.get('codigoSeguridad')?.errors && this.compra.get('codigoSeguridad')?.touched) ? 'errorInput' : ''">
+                                <p
+                                    *ngIf="this.compra.get('codigoSeguridad')?.hasError('required') && this.compra.get('codigoSeguridad')?.touched">
+                                    <small class="errorText">EL código de seguridad es requerido</small>
+                                </p>
+                                <p *ngIf="this.compra.get('codigoSeguridad')?.hasError('minlength')">
+                                    <small class="errorText">Minimo de caracteres es 3</small>
+                                </p>
+                                <p *ngIf="this.compra.get('codigoSeguridad')?.hasError('maxlength')">
+                                    <small class="errorText">Máximo de caracteres es 3</small>
+                                </p>
+                            </div>
+                            <div class="col-sm-6">
+                                <label>Fecha de expiración:</label>
+                                <div class="row">
+                                    <div class="col-sm-6">
+                                        <select class="form-select" formControlName="meses"
+                                            [ngClass]="(this.compra.get('meses')?.errors && this.compra.get('meses')?.touched) ? 'errorInput' : ''">
+                                            <option value="">Mes</option>
+                                            <option *ngFor="let item of meses">
+                                                {{item}}
+                                            </option>
+                                        </select>
+                                        <p
+                                            *ngIf="this.compra.get('meses')?.hasError('required') && this.compra.get('meses')?.touched">
+                                            <small class="errorText">El mes es requerido</small>
+                                        </p>
+                                    </div>
+                                    <div class="col-sm-6">
+                                        <select class="form-select" formControlName="anos"
+                                            [ngClass]="(this.compra.get('anos')?.errors && this.compra.get('anos')?.touched) ? 'errorInput' : ''">
+                                            <option value="">Año</option>
+                                            <option *ngFor="let item of anos">
+                                                {{item}}
+                                            </option>
+                                        </select>
+                                        <p
+                                            *ngIf="this.compra.get('anos')?.hasError('required') && this.compra.get('anos')?.touched">
+                                            <small class="errorText">El año es requerido</small>
+                                        </p>
+                                    </div>
+                                </div>
+                            </div>
+
+                        </div>
+                        <div class="content" style="text-align: right;">
+                            <input type="reset" class="btn btn-warning" style="margin-bottom: 0px;margin-top: 10px; margin-right: 10px;" value="Limpiar formulario">
+                        </div>
+                        
+                    </form>
+                </div>
+                <div class="card-footer " style="text-align: right;background:linear-gradient(270deg, #cd06ff, #3e46b8);">
+                    <button type="button" class="btn btn-success" style="margin: 5px;" (click)="validar()"> <i
+                            class="bi bi-currency-dollar"></i>Pagar</button>
+                  
+                     
+                    <a type="submit" class="btn btn-danger" style="margin: 5px;"
+                        routerLink="../listar-producto">Cancelar </a>
+                </div>
+
+            </div>
+        </div>
+        <div class="col-sm-6">
+            <div class="card ">
+                <div class="card-header text-center " style="background:linear-gradient(270deg, #60b0f1, #3e46b8);"><h5>Resumen de la venta</h5></div>
+                <div class="card-body">
+                    <!-- <div *ngFor=" let item of pagoCarrito">
+                        {{item.nombre}}
+                        {{item.tags}}
+
+                    </div> -->
+              <div class="table-wrapper-scroll-y my-custom-scrollbar">
+                <table class="table table-image border">
+                    <thead>
+              
+                    </thead>
+                    <tbody>
+                        <tr *ngFor="let p of pagoCarrito; let j = index">
+                            <td class="w-25">
+                                <img src="{{p.img}}" class="img-fluid img-thumbnail" alt="Sheep">
+                            </td>
+                            <td>{{p.nombre}}</td>
+                    
+                            <td >{{pagoCantidad[j+1].cant}}</td>
+                            <td>{{p.precio*pagoCantidad[j+1].cant | currency:'CLP'}}</td>
+            
+                        </tr>
+        
+                    </tbody>
+                </table>
+              </div>
+                   
+                </div>
+                <div class="card-footer" style="text-align: right;background:linear-gradient(270deg, #cd06ff, #3e46b8);">
+                    <div class="row">
+                        <h5>Total carrito: {{total| currency:'CLP'}}</h5>
+                    </div>
+                 
+                </div>
+            </div>
+        </div>
+    </div>
+
+</div>
